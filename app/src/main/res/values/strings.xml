@@ -27,5 +27,7 @@
     <string name="no_data">没有数据</string>
     <string name="auth_info">制作: kerryzhang. 仅用于技术研究. 所产生的任何风险跟作者无关,均由作用者本人自己负责.</string>
     <string name="history">历史</string>
+    <string name="project_github">项目地址: https://github.com/yu-xiaoyao/Virtuallocation</string>
+    <string name="check_update">检查更新</string>
 
 </resources>

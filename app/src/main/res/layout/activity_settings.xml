@@ -1,16 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SettingsActivity">
 
 
     <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="关于" />
+        android:padding="@dimen/dp_16"
+        android:text="关于"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_24" />
 
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/currentVersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_16"
+        android:textColor="@color/gray_333"
+        android:textSize="@dimen/sp_16" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:padding="@dimen/dp_16"
+        android:text="@string/project_github"
+        android:textColor="@color/gray_333"
+        android:textSize="@dimen/sp_16" />
+
+
+
+    <TextView
+        android:id="@+id/checkUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:padding="@dimen/dp_16"
+        android:text="@string/check_update"
+        android:textColor="@color/gray_333"
+        android:textSize="@dimen/sp_16" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:padding="@dimen/dp_16"
+        android:text="@string/auth_info"
+        android:textColor="@color/gray_333"
+        android:textSize="@dimen/sp_16" />
+
+</LinearLayout>

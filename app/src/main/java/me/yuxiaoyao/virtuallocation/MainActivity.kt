@@ -67,6 +67,7 @@ class MainActivity : AppCompatActivity(), LocationSource, AMap.OnMyLocationChang
     private lateinit var currentMockLocation: TextView
     private lateinit var searchText: TextView
     private lateinit var mockHistory: ImageView
+    private lateinit var goToSetting: ImageView
 
     private var isDataLoading = false
 
@@ -120,6 +121,7 @@ class MainActivity : AppCompatActivity(), LocationSource, AMap.OnMyLocationChang
         currentMockLocation = findViewById(R.id.currentMockLocation)
         searchText = findViewById(R.id.searchText)
         mockHistory = findViewById(R.id.mockHistory)
+        goToSetting = findViewById(R.id.goToSetting)
 
 
 
@@ -227,6 +229,10 @@ class MainActivity : AppCompatActivity(), LocationSource, AMap.OnMyLocationChang
                     startMockLocationAction(marker, ap)
                 }
             }).show()
+        }
+        goToSetting.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 
