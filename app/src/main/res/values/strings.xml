@@ -4,6 +4,7 @@
     <string name="exist_app">退出应用</string>
     <string name="mock_location">模拟位置</string>
     <string name="recheck">重新检测</string>
+    <string name="confirm_mock">检测失败,请确定已选择模拟位置为当前应用</string>
     <string name="go_to_check">去检测</string>
     <string name="go_to_check_location">重新去检测模拟位置</string>
     <string name="open_setting">打开设置</string>

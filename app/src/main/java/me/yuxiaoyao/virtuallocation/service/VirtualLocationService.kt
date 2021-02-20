@@ -59,7 +59,7 @@ class VirtualLocationService : Service() {
         stopVirtualLocationService()
     }
 
-    private fun startVirtualLocationService(lng: Double, lat: Double) {
+    private fun startVirtualLocationService(lng: Double, lat: Double): Boolean {
         synchronized(lock) {
             this.longitude = lng
             this.latitude = lat
@@ -67,15 +67,17 @@ class VirtualLocationService : Service() {
         if (!taskStatus.get()) {
             virtualLocationManager = VirtualLocationManager.get(this)
             val checkEnableVirtualLocation = virtualLocationManager.checkEnableVirtualLocation()
-            if (checkEnableVirtualLocation) {
+            return if (checkEnableVirtualLocation) {
                 taskStatus.set(true)
                 timer = null
                 timer = Timer()
                 timer!!.schedule(createTask(), 0, CHECK_LOCATION_INTERVAL)
+                true
             } else {
-                callback?.virtualLocation(false)
+                false
             }
         }
+        return true
     }
 
     private fun stopVirtualLocationService(execCallback: Boolean = false) {
@@ -100,9 +102,9 @@ class VirtualLocationService : Service() {
         /**
          * GPS 坐标(非高德坐标)
          */
-        fun startVirtualLocation(lng: Double, lat: Double, showAddress: String? = null) {
+        fun startVirtualLocation(lng: Double, lat: Double, showAddress: String? = null): Boolean {
             address = showAddress
-            startVirtualLocationService(lng, lat)
+            return startVirtualLocationService(lng, lat)
         }
 
         fun stopVirtualLocation() {

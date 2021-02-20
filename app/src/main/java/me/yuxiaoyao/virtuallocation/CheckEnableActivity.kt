@@ -66,6 +66,7 @@ class CheckEnableActivity : AppCompatActivity() {
                     checkLocationAndStart()
                 } else {
                     virtualLocationSuccess.visibility = View.GONE
+                    Toast.makeText(this, R.string.confirm_mock, Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -123,9 +124,15 @@ class CheckEnableActivity : AppCompatActivity() {
         if (requestCode == FINE_LOCATION_REQ_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // 权限申请成功
-                virtualLocationFailed.visibility = View.GONE
-                virtualLocationSuccess.visibility = View.VISIBLE
-                checkLocationAndStart()
+                if (virtualLocationManager.checkEnableVirtualLocation()) {
+                    virtualLocationFailed.visibility = View.GONE
+                    virtualLocationSuccess.visibility = View.VISIBLE
+                    checkLocationAndStart()
+                } else {
+                    virtualLocationFailed.visibility = View.VISIBLE
+                    virtualLocationSuccess.visibility = View.GONE
+                }
+
             } else {
                 Toast.makeText(this, "没有定位权限", Toast.LENGTH_SHORT).show()
             }

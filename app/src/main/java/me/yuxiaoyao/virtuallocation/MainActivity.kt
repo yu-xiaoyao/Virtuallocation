@@ -1,5 +1,6 @@
 package me.yuxiaoyao.virtuallocation
 
+import android.annotation.SuppressLint
 import android.content.*
 import android.location.Location
 import android.os.Bundle
@@ -447,11 +448,6 @@ class MainActivity : AppCompatActivity(), LocationSource, AMap.OnMyLocationChang
                     view: View
                 ) {
                     startMockLocationAction(marker, ap)
-                    Toast.makeText(
-                        this@MainActivity,
-                        "正在模拟定位:" + ap.address,
-                        Toast.LENGTH_SHORT
-                    ).show()
                     dialog.dismiss()
                 }
 
@@ -523,21 +519,34 @@ class MainActivity : AppCompatActivity(), LocationSource, AMap.OnMyLocationChang
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun startMockLocationAction(marker: Marker, ap: AddressPair) {
+
         // 高德坐标转换成GPS
         val gps = MapUtil.convertToGPS(ap.longitude, ap.latitude)
         Log.i(
             TAG,
             "高德坐标: ${ap.longitude},${ap.latitude} . GPS坐标: ${gps[0]},${gps[1]}"
         )
-        // mockingMarker = marker
-        mockingInfo = ap
-        virtualLocationBinder?.startVirtualLocation(gps[0], gps[1], ap.address)
-        currentMockLocation.text = "正在模拟: ${ap.address}"
-        currentMockContainer.visibility = View.VISIBLE
 
-        // 添加到历史记录
-        ListHistoryCache.with<AddressPair>(this, CACHE_NAME).add(MOCK_HISTORY_LIST_KEY, ap)
+        virtualLocationBinder?.apply {
+            val status = virtualLocationBinder!!.startVirtualLocation(gps[0], gps[1], ap.address)
+            if (status) {
+                // 启动成功
+                mockingInfo = ap
+                currentMockLocation.text = "正在模拟: ${ap.address}"
+                currentMockContainer.visibility = View.VISIBLE
+
+                // 添加到历史记录
+                ListHistoryCache.with<AddressPair>(this@MainActivity, CACHE_NAME)
+                    .add(MOCK_HISTORY_LIST_KEY, ap)
+            } else {
+                Toast.makeText(this@MainActivity, "模拟位置失败,请确定在开发者中选择当前应用", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+
     }
 
     private fun stopMockLocationAction() {
