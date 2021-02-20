@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CheckEnableActivity">
+
+    <RelativeLayout
+        android:id="@+id/virtualLocationFailed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/dp_8"
+            android:text="@string/open_dev_setting_tip"
+            android:textSize="@dimen/sp_16" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp_64"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/goToSetting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/gray_eee"
+                android:padding="@dimen/dp_16"
+                android:text="@string/open_setting"
+                android:textAlignment="center"
+                android:textSize="@dimen/sp_24" />
+
+            <TextView
+                android:id="@+id/reCheckVirtualLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/gray_eee"
+                android:padding="@dimen/dp_16"
+                android:text="@string/recheck"
+                android:textAlignment="center"
+                android:textSize="@dimen/sp_24" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/auth_info"
+            android:textAlignment="center"
+            android:textSize="@dimen/sp_16" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/virtualLocationSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="虚拟定位"
+            android:textAlignment="center" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/auth_info"
+            android:textAlignment="center"
+            android:textSize="@dimen/sp_16" />
+
+
+    </RelativeLayout>
+</FrameLayout>

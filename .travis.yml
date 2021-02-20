@@ -1,0 +1,37 @@
+language: android
+dist: trusty
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-30.0.3
+    - android-30
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - extra-google-m2repository
+  licenses:
+    - android-sdk-preview-license.+
+    - android-sdk-license.+
+    - google-gdk-license-+
+    - intel-android-extra-license.+
+    - android-sdk-arm-dbt-license.+
+jdk:
+  - oraclejdk8
+script:
+  - "./gradlew assembleRelease --stacktrace"
+before_install:
+  - yes | sdkmanager "platforms;android-30"
+
+# travis encrypt GH_TOKEN=XXXXXXX --add
+env:
+  global:
+    secure: vJe8RZQwh4ksGeIfTMC0QlnNmY0JKP6BjJ5N/UJfYuPV7TN5F+PP8wh9kYQDkyrtF2nPn1cF1dM0OqaQuDrQKr/vCEuZPXQ3A6NbF2neBP3TVYvKA1VuMB1KFCPu9j1sxDt3f9EJj+KrORhvEUhZvJ2dzW+owNIPeg6YbhQLHVNdkjt3QMXDOffP7Ps1OnJU3D6U47FJCLXH05x78MA3hqXiPkScquPOlb2pmjK4O/2S36TbaM4rMp2xITgLzAdpoPcSdYeOiHDqRTvFBAWp9VUCW/1Qoep/qliACEpa6O5kS7/V/2LUZpIQawOIlBTWAsEwsuMNBfjbZc11odhtz3DPS8jwmgdn0QOC6soTUTTbjYyLIRjZFQUzFuySWhEzl2cRIGyBh0iL8d7dAeP3f2ivMpiiP9a/0vzOwTnX7FiXx2PtpmkLHJexJympkwGZbyBSFNnhfP/2NQHPh1sM3eCoUdTmm+Z/gaeVeB0scQ3z2j8t+8axfCzjlDGUBsjnomvD8deaY69A/KAt6uWiH9XmE0wKTP6N07t6sajv4Zc2DfltPcnEKFHqiJvLHMQqXxnOrj5wD6OeuQDFi0ksz+SOVuqQfJhHg8dnSaLn6+rmDVix2+ZA+gP2nQqPiPlQWtzmzCkprWGtZYU7N78inXS6pkeRc+2S4+9nHEjq2qk=
+
+deploy:
+  provider: releases
+  skip_cleanup: 'true'
+  api_key: ${GH_TOKEN}
+  file: 'app/build/outputs/apk/release/app-release.apk'
+  on:
+    tags: true

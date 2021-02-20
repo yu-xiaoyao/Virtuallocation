@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tvMockingLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_32"
+        android:paddingRight="@dimen/dp_16"
+        android:paddingBottom="@dimen/dp_16"
+        android:textColor="@color/gray_333"
+        android:textSize="@dimen/sp_24" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMockingActions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dp_16" />
+
+
+</LinearLayout>

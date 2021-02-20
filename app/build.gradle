@@ -1,0 +1,117 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+def loadAMapConfig() {
+    def config = file("./amap-config.properties")
+    if (!config.exists()) {
+        println("amap-config.properties not found.use env config")
+        return
+    }
+    Properties p = new Properties()
+    p.load(config.newDataInputStream())
+    gradle.ext.AMAP_ANDROID_SERVICE_KEY_PROPERTIES = p.getProperty("service.type.android.key")
+    gradle.ext.AMAP_WEB_SERVICE_KEY_PROPERTIES = p.getProperty("service.type.web.key")
+}
+
+// for env
+def loadFromEnv() {
+    def androidKey = System.getenv("AMAP_ANDROID_SERVICE_KEY_PROPERTIES")
+    if (androidKey != null && androidKey.length() != 0) {
+        gradle.ext.AMAP_ANDROID_SERVICE_KEY_PROPERTIES = androidKey
+    }
+    def webKey = System.getenv("AMAP_WEB_SERVICE_KEY_PROPERTIES")
+    if (androidKey != null && androidKey.length() != 0) {
+        gradle.ext.AMAP_WEB_SERVICE_KEY_PROPERTIES = webKey
+    }
+}
+
+loadAMapConfig()
+
+/**
+ * 高德地图API的Key,这里可以使用环境变量或者创建 amap-config.properties 文件
+ * 1. AMAP_ANDROID_SERVICE_KEY_PROPERTIES
+ * 2. AMAP_WEB_SERVICE_KEY_PROPERTIES
+ *
+ * travis-ci 编译发布时,签名信息必须带过来 (VirtualLocation.keystore) 的信息
+ * 1. ALIAS_NAME (VirtualLocation)
+ * 2. KEYSTORE_PASS
+ * 3. ALIAS_PASS
+ */
+loadFromEnv()
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "me.yuxiaoyao.virtuallocation"
+        minSdkVersion 29
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+        manifestPlaceholders = [
+                AMAP_ANDROID_SERVICE_KEY: "${gradle.AMAP_ANDROID_SERVICE_KEY_PROPERTIES}",
+                AMAP_WEB_SERVICE_KEY    : "${gradle.AMAP_WEB_SERVICE_KEY_PROPERTIES}"
+        ]
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("./VirtualLocation.keystore")
+            storePassword System.getenv("KEYSTORE_PASS")
+            keyAlias System.getenv("ALIAS_NAME")
+            keyPassword System.getenv("ALIAS_PASS")
+        }
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1'
+
+    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+
+    implementation files('libs/AMap3DMap_7.8.0_AMapSearch_7.7.0_AMapLocation_5.2.0_20210104.aar')
+
+
+}
+

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">虚拟定位</string>
+    <string name="check_virtual_location">模拟位置检测</string>
+    <string name="exist_app">退出应用</string>
+    <string name="mock_location">模拟位置</string>
+    <string name="recheck">重新检测</string>
+    <string name="go_to_check">去检测</string>
+    <string name="go_to_check_location">重新去检测模拟位置</string>
+    <string name="open_setting">打开设置</string>
+    <string name="open_dev_setting">打开开发者模式</string>
+    <string name="open_dev_setting_tip">请先打开开发者模式,点击 "打开设置" 找到关于手机,连续点击 "系统版本",直到出现提示已处于开发者模式后,返回页面,点击 "重新检测"</string>
+    <string name="not_select_virtual_app">没有选择模拟位置为当前应用</string>
+    <string name="can_location">可以模拟位置</string>
+    <string name="set_virtual_location">设置模拟定位的位置</string>
+    <string name="address_detail">地址信息</string>
+    <string name="conform">确定</string>
+    <string name="virtual_failed">模拟定位失败</string>
+    <string name="load_location_data_error">加载位置数据失败,请重新自动选择</string>
+    <string name="stop_virtual_location">停止模拟定位</string>
+    <string name="search">搜索</string>
+    <string name="settings">设置</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="no_data">没有数据</string>
+    <string name="auth_info">制作: kerryzhang. 仅用于技术研究. 所产生的任何风险跟作者无关,均由作用者本人自己负责.</string>
+    <string name="history">历史</string>
+
+</resources>

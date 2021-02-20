@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_72"
+    android:background="@color/black"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/dp_1">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_8">
+
+        <TextView
+            android:id="@+id/bottom_sheet_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="start"
+            android:maxLines="2"
+            android:textColor="@color/gray_333"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/bottom_sheet_latLng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_666"
+            android:textSize="@dimen/sp_12" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="@dimen/dp_72"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/bottom_sheet_set_target"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:contentDescription="@string/set_virtual_location"
+            android:padding="@dimen/dp_16"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_location_on_24" />
+    </FrameLayout>
+
+</LinearLayout>
