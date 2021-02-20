@@ -22,16 +22,13 @@ script:
   - "./gradlew assembleRelease --stacktrace"
 before_install:
   - yes | sdkmanager "platforms;android-30"
-
-# travis encrypt GH_TOKEN=XXXXXXX --add
 env:
   global:
-    secure: vJe8RZQwh4ksGeIfTMC0QlnNmY0JKP6BjJ5N/UJfYuPV7TN5F+PP8wh9kYQDkyrtF2nPn1cF1dM0OqaQuDrQKr/vCEuZPXQ3A6NbF2neBP3TVYvKA1VuMB1KFCPu9j1sxDt3f9EJj+KrORhvEUhZvJ2dzW+owNIPeg6YbhQLHVNdkjt3QMXDOffP7Ps1OnJU3D6U47FJCLXH05x78MA3hqXiPkScquPOlb2pmjK4O/2S36TbaM4rMp2xITgLzAdpoPcSdYeOiHDqRTvFBAWp9VUCW/1Qoep/qliACEpa6O5kS7/V/2LUZpIQawOIlBTWAsEwsuMNBfjbZc11odhtz3DPS8jwmgdn0QOC6soTUTTbjYyLIRjZFQUzFuySWhEzl2cRIGyBh0iL8d7dAeP3f2ivMpiiP9a/0vzOwTnX7FiXx2PtpmkLHJexJympkwGZbyBSFNnhfP/2NQHPh1sM3eCoUdTmm+Z/gaeVeB0scQ3z2j8t+8axfCzjlDGUBsjnomvD8deaY69A/KAt6uWiH9XmE0wKTP6N07t6sajv4Zc2DfltPcnEKFHqiJvLHMQqXxnOrj5wD6OeuQDFi0ksz+SOVuqQfJhHg8dnSaLn6+rmDVix2+ZA+gP2nQqPiPlQWtzmzCkprWGtZYU7N78inXS6pkeRc+2S4+9nHEjq2qk=
-
+    secure: fC4rDkt8qxZaTz+ebDZyjLLK3BGkiG/Pe46t7TFmd8MIojbEPTG/HX0EhU8m2NkNRYTVJDYzM5eYs5TQfveyO2EHNJ5PFdHQ8tDSAIrY9H+lmPFtrwac7oaGMWdSRJgPf4kjEHV5MYzc6+rgBZVriL13pc6+o3PNSTe8/dP7Nup29sNbH7e9H1jdcrHHuqV+277WrI2qBA6RvgZO6rctj9KYxz1oO58NjYzHOPaNh2kYUZhikgBiqCr4qgupU99cZ6PG8vgHcWNrh64V8MBB75tpcQ1Ry8Mz3UPlP3iKrOvMP0OO7XIcqPaKGCQwNIObiXctXVaL2hUgKqcDUegMPKZfiP6jzno8/uKW3PvvraCjSPSmfIucfBpZ4n8PwNgQlsHTAgYIY1VpZ4VTQ/Ywbrj420YK1DrIQisvCNVT6BKpWdbJaNpwCO53dJunPchyExOApQ79XwxMuzVrheH4FlCKnyiVbde0t11jFaHLvVIktqL/hVr82y7ixMurGRGFTJUIvoZIqcdl0xZrnYLLWILTCywRSW3YIYtGUGAo8hhEi85RvOZGuoQ12gsfy97Ga3vS6UK2502WripuPlq9Uzhb70iAD0cLhXTB3EP7Sx2okxHbtez0dzl8ZUyqlIh8LXYSDM5Ws89WOJIYQ3Zs+lfsQQlTTkYdADr8u42GQI4=
 deploy:
   provider: releases
   skip_cleanup: 'true'
-  api_key: ${GH_TOKEN}
-  file: 'app/build/outputs/apk/release/app-release.apk'
+  api_key: "${GH_TOKEN}"
+  file: app/build/outputs/apk/release/app-release.apk
   on:
     tags: true
